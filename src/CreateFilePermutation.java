@@ -26,7 +26,7 @@ public class CreateFilePermutation
 		
 		while(rand.hasNext())
 		{
-			write_file.writeLine(rand.next() + "");
+			write_file.writeLine(Integer.toString(rand.next()));
 		}
 		write_file.close();
 
@@ -44,7 +44,6 @@ public class CreateFilePermutation
 		{
 			
 			rand_nums[counter] = Integer.parseInt(line_val);
-			//System.out.println(rand_nums[counter]);
 			counter++;
 			line_val = read_file.readLine();
 		}

@@ -21,15 +21,14 @@ class BrassDeck
 	
 	//DO THIS
 	//make this a static method (not really necessary, but lots of fun)
-	private ArrayList<BrassCard> shuffle()
+	private static ArrayList<BrassCard> shuffle(ArrayList<BrassCard> bd)
 	{
 		
 		util.Permutation perm = util.PermutationFactory.getPermutation("resources/brass_deck_shuffle.txt", 66, 66);
 		ArrayList<BrassCard> sd = new ArrayList<BrassCard>();
 		while(perm.hasNext()){
 			int j = perm.next();
-			//System.out.println(j);
-			sd.add(brass_deck.get(j - 1));
+			sd.add(bd.get(j - 1));
 		}
 		
 		return sd;
@@ -49,14 +48,14 @@ class BrassDeck
 	public void dealStartCanalPhase()
 	{
 		//discard 6 cards at the beginning of the canal phase
-		shuffled_deck = shuffle();
+		shuffled_deck = shuffle(brass_deck);
 		discard(6);
 	}
 	
 	public void dealStartRailPhase()
 	{
 		// discard 2 at the beginning of the rail phase
-		shuffled_deck = shuffle();
+		shuffled_deck = shuffle(brass_deck);
 		discard(2);
 	}
 	
