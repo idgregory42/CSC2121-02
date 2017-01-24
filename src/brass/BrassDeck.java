@@ -28,7 +28,7 @@ class BrassDeck
 		ArrayList<BrassCard> sd = new ArrayList<BrassCard>();
 		while(perm.hasNext()){
 			int j = perm.next();
-			sd.add(bd.get(j - 1));
+			sd.add(bd.get(j-1));
 		}
 		
 		return sd;
