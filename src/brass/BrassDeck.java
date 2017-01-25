@@ -10,6 +10,7 @@ import gui.ImageLoader;
 import gui.PixelDimension;
 import gui.PixelPoint;
 
+//util classes 
 import util.PermutationFactory;
 import util.Permutation;
 
@@ -21,14 +22,19 @@ class BrassDeck
 	
 	//DO THIS
 	//make this a static method (not really necessary, but lots of fun)
+	
+	//changed to static and needs brass_card to be passed into it
 	private static ArrayList<BrassCard> shuffle(ArrayList<BrassCard> bd)
 	{
 		
-		util.Permutation perm = util.PermutationFactory.getPermutation("resources/brass_deck_shuffle.txt", 66, 66);
+		Permutation perm = PermutationFactory.getPermutation("resources/brass_deck_shuffle.txt", 66, 66);
+		
+		//Function copy of the shuffleddeck
 		ArrayList<BrassCard> sd = new ArrayList<BrassCard>();
+		
 		while(perm.hasNext()){
 			int j = perm.next();
-			sd.add(bd.get(j-1));
+			sd.add(bd.get(j-1)); //it gets the index j-1 because of off by one error
 		}
 		
 		return sd;
@@ -48,7 +54,7 @@ class BrassDeck
 	public void dealStartCanalPhase()
 	{
 		//discard 6 cards at the beginning of the canal phase
-		shuffled_deck = shuffle(brass_deck);
+		shuffled_deck = shuffle(brass_deck);   //shuffles the brass deck
 		discard(6);
 	}
 	

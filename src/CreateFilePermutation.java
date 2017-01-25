@@ -1,6 +1,11 @@
-
-
+//util classes
 import util.WriteTextFile;
+import util.ReadTextFile;
+import util.Keyboard;
+import util.RandomPermutation;
+
+import java.util.Collections;
+import java.util.ArrayList;
 
 public class CreateFilePermutation
 {
@@ -10,7 +15,7 @@ public class CreateFilePermutation
 		//use the Keyboard class to obtain the upper integer value
 		//also, obtain the file name to save the data later
 		
-		util.Keyboard inpt = util.Keyboard.getKeyboard();
+		Keyboard inpt = Keyboard.getKeyboard();
 		
 		int in_val = inpt.readInt("Please enter the upper limit integer value : ");
 		System.out.println(in_val);
@@ -21,8 +26,8 @@ public class CreateFilePermutation
 		//obtain the random permutation using the upper integer value
 		//write out the values to a text file (close the file)
 
-		util.RandomPermutation rand = new util.RandomPermutation(in_val, in_val);
-		util.WriteTextFile write_file =  new util.WriteTextFile(file_nombre);
+		RandomPermutation rand = new RandomPermutation(in_val, in_val);
+		WriteTextFile write_file =  new WriteTextFile(file_nombre);
 		
 		while(rand.hasNext())
 		{
@@ -35,16 +40,16 @@ public class CreateFilePermutation
 		//it is easiest to read the first line outside of a while loop that tests for EOF
 		//use Integer.parseInt() for converting String to int
 		
-		int[] rand_nums = new int[in_val];
-		int counter = 0;
 		
-		util.ReadTextFile read_file = new util.ReadTextFile(file_nombre);
+		ArrayList<Integer> rand_nums = new ArrayList<Integer>(); //faster than array
+		
+		ReadTextFile read_file = new ReadTextFile(file_nombre);
 		String line_val = read_file.readLine();
+		
+		//Reads content from file and stores them in a list array
 		while(!read_file.EOF())
 		{
-			
-			rand_nums[counter] = Integer.parseInt(line_val);
-			counter++;
+			rand_nums.add(Integer.parseInt(line_val));
 			line_val = read_file.readLine();
 		}
 		read_file.close();
@@ -52,12 +57,13 @@ public class CreateFilePermutation
 		//DO THIS
 		//sort the integers (use java.util.Arrays.sort)
 		//print them out to make sure they are all there once
-		java.util.Arrays.sort(rand_nums);
-
-		for(int i = 0; i < rand_nums.length; i++){
-			System.out.println(rand_nums[i]);
+		
+		//sorts the list array
+		Collections.sort(rand_nums);
+		
+		//automated for loop that prints the values in the array list
+		for (int i : rand_nums){
+			System.out.println(i);
 		}
-
-
 	}
 }
