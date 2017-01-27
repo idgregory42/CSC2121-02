@@ -4,8 +4,6 @@ import util.ReadTextFile;
 import util.Keyboard;
 import util.RandomPermutation;
 
-import java.util.Collections;
-import java.util.ArrayList;
 
 public class CreateFilePermutation
 {
@@ -41,16 +39,18 @@ public class CreateFilePermutation
 		//use Integer.parseInt() for converting String to int
 		
 		
-		ArrayList<Integer> rand_nums = new ArrayList<Integer>(); //faster than array
+		int[] rand_nums = new int[in_val]; 
 		
 		ReadTextFile read_file = new ReadTextFile(file_nombre);
 		String line_val = read_file.readLine();
 		
-		//Reads content from file and stores them in a list array
+		//Reads content from file and stores them in an array
+		int cnt = 0;
 		while(!read_file.EOF())
 		{
-			rand_nums.add(Integer.parseInt(line_val));
+			rand_nums[cnt] = Integer.parseInt(line_val);
 			line_val = read_file.readLine();
+			cnt++;
 		}
 		read_file.close();
 
@@ -58,12 +58,14 @@ public class CreateFilePermutation
 		//sort the integers (use java.util.Arrays.sort)
 		//print them out to make sure they are all there once
 		
-		//sorts the list array
-		Collections.sort(rand_nums);
+		//sorts the array
+		java.util.Arrays.sort(rand_nums);
 		
-		//automated for loop that prints the values in the array list
-		for (int i : rand_nums){
-			System.out.println(i);
+		int v = rand_nums.length;
+		
+		//for loop that prints the values in the array
+		for (int i = 0;i < v; i++){
+			System.out.println(rand_nums[i]);
 		}
 	}
 }
